@@ -30,3 +30,16 @@
     transform: rotate(360deg);
   }
 }
+
+img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+/* body {
+  background-image: url('https://na.leagueoflegends.com/sites/default/files/styles/scale_large/public/upload/art/akali_vs_baron_3.jpg?itok=jYw2KHaU');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+} */

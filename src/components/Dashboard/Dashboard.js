@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Navbar from './Navbar/Navbar';
 
 class Champions extends Component {
     render(){
-        console.log(this.props)
         return (
-            <div>{this.props}</div>
+            <Navbar />
         )
     }
+
+
 }
 
-const mapStateToProps = state => {
-    return {
-        state
-    }
-}
-
-export default connect (mapStateToProps)(Champions)
+export default Champions

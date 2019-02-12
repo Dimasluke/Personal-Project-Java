@@ -1,0 +1,23 @@
+/* .landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30vh;
+}
+
+.landing-page h1 {
+    font-size: 100px;
+} */
+.landing-page {
+    margin-top: 25vh;
+}
+
+.landing-button {
+    text-decoration: none;
+    font-size: 30px;
+    transition-duration: .5s;
+}
+.landing-button:hover {
+    color: green;
+}

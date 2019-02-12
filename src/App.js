@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Landing from './components/Landing/Landing';
+import Dashboard from './components/Dashboard/Dashboard';
+import Navbar from './components/Dashboard/Navbar/Navbar';
 import axios from 'axios';
 
 class App extends Component {
   constructor (props){
     super(props);
     this.state = {
-      champions: []
+      champions: {}
     }
   }
 
   componentDidMount (){
-    this.savedChampions();
-    // this.getChampions();
+    // this.savedChampions();
+    this.getChampions();
   }
 
   getChampions = async () => {
@@ -34,23 +36,13 @@ class App extends Component {
   }
 
   render() {
-    let mappedChampions = this.state.champions.map(e => {
-      return (
-        <div key={e.id}>
-          {e.name} - <img src={e.img} />
-        </div>
-      )
-    })
-    console.log(this.state.champions)
+    const { champions } = this.state
+    const result = Object.values(champions)
     return (
-      // <Switch>
-      //   <Route exact path='/' render={() =>{
-      //     return <Landing />
-      //   }} />
-      // </Switch>
-      <div>
-        {mappedChampions}
-      </div>
+      <Switch>
+        <Route exact path='/' component={Landing} />
+        <Route path='/champions' component={Dashboard} />
+      </Switch>
     );
   }
 }

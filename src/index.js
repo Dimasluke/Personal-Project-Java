@@ -5,7 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import store from './store';
+import store from './redux/store';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM
     .render(
