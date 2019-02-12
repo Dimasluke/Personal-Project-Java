@@ -1,3 +1,5 @@
+// For all icturs used for production no copyright infringement is intended
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
