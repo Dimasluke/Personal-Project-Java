@@ -1,0 +1,49 @@
+.dashboard-image { 
+    width: 100%;
+    height: 50vh;
+}
+
+.foo {
+    display: flex;
+    justify-content: center;
+    height: 94vh;
+}
+
+.dashboard-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+.champion-team {
+    display: flex;
+    justify-content: space-around;
+}
+
+.champion-col {
+    display: flex;
+    justify-content: center;
+}
+
+.team-col {
+    display: flex;
+    justify-content: center;
+}
+
+.build-container {
+    margin-top: 5vh;
+}
+
+.main-title {
+    text-align: center;
+}
+
+.main-text {
+    text-align: center;
+}
+
+.main-img {
+    height: 80.66vh;
+}

@@ -1,0 +1,48 @@
+.userSession-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30vh;
+}
+
+.login-button {
+    margin: 2vh 2vh;
+}
+
+.userSession-card {
+    width: 28vw;
+    height: 50vh;
+}
+
+#username-login {
+    width: 24vw;
+}
+#password-login {
+    width: 24vw;
+}
+#username-register {
+    width: 24vw;
+}
+#password-register {
+    width: 24vw;
+}
+
+.usersession-card {
+    margin: 0 auto;
+    padding: 4vh;
+    width: 28vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-password {
+    margin-top: 1vh;
+}

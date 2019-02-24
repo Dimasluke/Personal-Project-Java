@@ -4,7 +4,11 @@ const session = require('express-session')
 const massive = require('massive');
 const app = express();
 const savedController = require('./controllers/savedController');
+const championController = require('./controllers/championController');
+const userController = require('./controllers/userController')
+const flash = require('connect-flash');
 
+app.use(flash())
 app.use(bodyParser.json());
 require('dotenv').config();
 
@@ -30,6 +34,12 @@ app.use(
 
 
 app.get('/api/savedChampions', savedController.getChampions)
+app.get('/api/champions/:id', championController.championStats)
+
+app.get('/sessionInfo', userController.sessionInfo)
+app.post('/register', userController.register )
+app.post('/login', userController.login)
+app.post('/logout', userController.logout)
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

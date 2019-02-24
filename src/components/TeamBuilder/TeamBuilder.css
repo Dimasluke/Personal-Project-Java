@@ -1,0 +1,45 @@
+#champion-card {
+    margin: .5vh;
+}
+
+#champion-container {
+    height: 35vh;
+    width: 38vw;
+    position: absolute;
+    top: 8vh;
+    left: 2vw;
+    margin-top: 2vh;
+}
+
+.champion-form {
+    height: 4vh;
+}
+
+.input-label {
+    font: 13px;
+    text-align: center;
+}
+
+.team-radar {
+    position: absolute;
+    top: 50vh;
+    right: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+.hovered-champion {
+    position: absolute;
+    top: 10vh;
+    right: 0;
+}
+
+.champ-button {
+    background: none;
+    padding: 0;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+}

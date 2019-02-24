@@ -1,0 +1,21 @@
+.champ-image {
+    height: 47vh;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.show-button {
+    height: 2vh;
+    width: 5vh;
+    margin: 0 1vh;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vh;
+}

@@ -1,9 +1,16 @@
 drop table if exists champions;
+drop table if exists users;
 
 create table champions (
     id serial primary key
     , name varchar(50)
     , img text
+);
+
+create table users (
+    id serial primary key,
+    username varchar unique,
+    password varchar
 );
 
 insert into champions ( name, img)

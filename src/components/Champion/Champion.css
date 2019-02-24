@@ -1,0 +1,25 @@
+.champion-card {
+    margin: 1vh;
+    padding: 1.5vh;
+}
+
+.champion-card p {
+    margin-top: .5vh;
+    text-align: center;
+}
+
+.champion-form {
+    margin-top: 5vh;
+}
+
+.champion-list {
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+}
+
+.champ-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
