@@ -22,8 +22,11 @@ class UserSession extends Component {
 
     loginUser = () => {
         const { username, password } = this.state;
-        const userInfo = { username, password}
-        axios.post('/login', {userInfo}).then(response => {
+        const userInfo = { 
+            "username" : username, 
+            "password" :password }
+        axios.post('/login', userInfo).then(response => {
+            console.log(response)
             this.props.userSession(response.data.username)
             this.props.history.push('/dashboard')
         }).catch(err => {

@@ -7,9 +7,13 @@ import ChampionShow from './components/Champion/ChampionShow';
 import UserSession from './components/Dashboard/UserSession/UserSession';
 import UserRegister from './components/Dashboard/UserSession/UserRegister';
 import TeamBuilder from './components/TeamBuilder/TeamBuilder';
+import Community from './components/Community/Community';
+import TeamShow from './components/Community/TeamShow';
 
 export default (
     <Switch>
+        <Route exact path='/community/:id' component={TeamShow} />
+        <Route exact path='/community' component={Community} />
         <Route exact path='/userSession/register' component={UserRegister} />
         <Route exact path='/userSession' component={UserSession} />
         <Route exact path='/teamBuilder' component={TeamBuilder} />

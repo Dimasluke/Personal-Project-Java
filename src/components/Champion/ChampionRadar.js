@@ -8,12 +8,8 @@ import { championStats, selectChampion } from '../../redux/reducer';
 class ChampionRadar extends Component {
 
     render () {
-        console.log(this.props)
         const { championInfo } = this.props
-        // const { champion } = this.props
-        // const { info } = this.props.champion
         console.log("this.props on ChampionRadar-->", this.props)
-    
         var data = {
             labels: ['Attack', 'Toughness', 'Crowd Control', 'Mobility', 'Utility'],
             datasets: [

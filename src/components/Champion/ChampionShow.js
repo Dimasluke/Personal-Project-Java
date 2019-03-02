@@ -20,11 +20,11 @@ class ChampionShow extends Component {
             let x = Object.values(data).filter(champion => {
                 return champion.id === this.props.match.params.id
             })
-            
+            console.log("selected champion -->", x)
             this.props.selectChampion(x[0])
             axios.get(`/api/champions/${x[0].id}`).then(response => {
-                console.log("Champion axios call-->", response.data[0])
-                this.props.championStats(response.data[0])
+                console.log("Champion axios call-->", response.data)
+                this.props.championStats(response.data)
             })
         })
     }

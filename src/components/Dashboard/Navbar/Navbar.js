@@ -36,6 +36,9 @@ class Navbar extends Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/teamBuilder"> Teams </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/community"> Community </Link>
+                    </li>
                     </ul>
                     { this.props.user ? 
                         <span id='userLoggedIn'>

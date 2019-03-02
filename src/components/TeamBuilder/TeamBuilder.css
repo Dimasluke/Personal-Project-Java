@@ -5,35 +5,24 @@
 #champion-container {
     height: 35vh;
     width: 38vw;
-    position: absolute;
-    top: 8vh;
-    left: 2vw;
     margin-top: 2vh;
 }
 
 .champion-form {
     height: 4vh;
+    margin-bottom: 2vh;
 }
 
 .input-label {
     font: 13px;
     text-align: center;
 }
-
-.team-radar {
-    position: absolute;
-    top: 50vh;
-    right: 0;
-}
-
 h1 {
     text-align: center;
 }
 
-.hovered-champion {
-    position: absolute;
-    top: 10vh;
-    right: 0;
+.champion-list {
+    margin-top: 7vh;
 }
 
 .champ-button {
@@ -42,4 +31,38 @@ h1 {
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;
     text-shadow: 0px 0px 0px transparent;
+}
+
+.selected-team {
+    width: 50vw;
+    height: 30vh;
+    float: right;
+    margin: 5vh;
+    display: flex;
+    justify-content: center;
+}
+
+.team-card {
+    border: 1px solid black;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-card-button {
+   width: 70%;
+   margin: 10px auto;
+}
+
+.test-top {
+    display: flex;
+    height: 140vh;
+    padding: 5vh;
+}
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -19,7 +19,8 @@ class UserRegister extends Component {
     registerUser = () => {
         const { username, password } = this.state;
         const userInfo = { username, password };
-        axios.post('/register', {userInfo}).then(response => {
+        axios.post('/register', userInfo).then(response => {
+            console.log(response)
             this.props.userSession(response.data.username)
             this.props.history.push('/dashboard')
         }).catch(err => {

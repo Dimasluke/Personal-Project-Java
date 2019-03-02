@@ -29,8 +29,6 @@ class Champion extends Component {
         })
     }
 
-    
-
     savedChampions = async () => {
         const response = await axios.get('/api/savedChampions');
         let { data } = await response;
