@@ -44,7 +44,7 @@ class ChampionShow extends Component {
     render () {
         const { picNum } = this.state;
         const { champion } = this.props
-        console.log(this.props);
+        const { championInfo } = this.props
         return (
             <div>
                 <Navbar />
@@ -69,6 +69,9 @@ class ChampionShow extends Component {
                         </div>
                     </div>
                 </div>
+                <div className='container iframe-container shadow-sm'>
+                    <iframe width='700' height='400' src={`https://www.youtube.com/embed/${championInfo.embedString}`}/>
+                </div>
             </div>
         )
     }
@@ -76,7 +79,8 @@ class ChampionShow extends Component {
 
 const mapStateToProps = state => {
     return {
-        champion: state.championInfo
+        champion: state.championInfo,
+        championInfo: state.championStats
     }
 }
 

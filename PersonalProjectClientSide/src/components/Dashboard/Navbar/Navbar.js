@@ -2,35 +2,48 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { userSession } from '../../../redux/reducer'
+import jwtDecode from 'jwt-decode'
+import { userSession, setToken } from '../../../redux/reducer'
 import './Navbar.css';
 
 class Navbar extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+
+        }
+    }
 
     componentDidMount = () => {
-        axios.get('/sessionInfo').then(response => {
-            console.log(response.data)
-            this.props.userSession(response.data.username)
-        })
+        const user = localStorage.getItem('token' || null)
+        console.log(user)
+        if (user) {
+            const username = jwtDecode(user).username
+            console.log(username)
+            this.props.userSession(username)
+            this.props.setToken(user)
+        } else { 
+            return null
+        }
     }
 
     destroySession = () => {
-        axios.post('/logout').then(response => {
-            this.props.userSession(response.data)
-        })
+        localStorage.removeItem('token')
+        this.props.userSession(null)
+        this.props.setToken('')
     }
 
     render () {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link to='/dashboard' className="navbar-brand">Legendary</Link>
+                <Link to='/' className="navbar-brand">Legendary</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <Link to='/champions' className='nav-link'> Champions <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item">
@@ -71,4 +84,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {userSession})(Navbar);
+export default connect(mapStateToProps, {userSession, setToken})(Navbar);

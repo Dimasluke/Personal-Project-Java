@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import './UserSession.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { userSession } from '../../../redux/reducer';
+import { userSession, setToken } from '../../../redux/reducer';
+import jwtDecode from 'jwt-decode';
 
 
 class UserRegister extends Component {
@@ -19,12 +20,14 @@ class UserRegister extends Component {
     registerUser = () => {
         const { username, password } = this.state;
         const userInfo = { username, password };
-        axios.post('/register', userInfo).then(response => {
-            console.log(response)
-            this.props.userSession(response.data.username)
-            this.props.history.push('/dashboard')
+        axios.post('/api/users/register', userInfo).then(response => {
+            localStorage.setItem('token', response.data)
+            this.props.setToken(response.data)
+            const user = jwtDecode(response.data)
+            this.props.userSession(user.username)
+            this.props.history.push('/')
         }).catch(err => {
-            this.setState({error: err.response.data.message})
+            console.log(err)
         })
     }
 
@@ -52,7 +55,7 @@ class UserRegister extends Component {
                             </div>
                             <div className='button-container'>
                                 <button className='btn btn-primary login-button' onClick={this.registerUser}>Submit</button>
-                                <Link to='/dashboard' className='btn btn-danger login-button'>Cancel</Link>
+                                <Link to='/' className='btn btn-danger login-button'>Cancel</Link>
                             </div>
                             <div>
                                 Already have an account? <Link to='/userSession'> Login</Link>
@@ -65,4 +68,4 @@ class UserRegister extends Component {
     }
 }
 
-export default connect(null, {userSession})(UserRegister);
+export default connect(null, {userSession, setToken})(UserRegister);

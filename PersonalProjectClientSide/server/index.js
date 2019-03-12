@@ -36,7 +36,7 @@ app.use(
 app.get('/api/savedChampions', savedController.getChampions)
 app.get('/api/champions/:id', championController.championStats)
 
-app.get('/sessionInfo', userController.sessionInfo)
+app.get('http://localhost:4000/sessionInfo', userController.sessionInfo)
 app.post('/register', userController.register )
 app.post('/login', userController.login)
 app.post('/logout', userController.logout)

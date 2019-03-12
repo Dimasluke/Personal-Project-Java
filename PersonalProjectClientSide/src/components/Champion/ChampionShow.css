@@ -1,5 +1,5 @@
 .champ-image {
-    height: 47vh;
+    margin: auto 0;
 }
 
 .button-container {
@@ -18,4 +18,10 @@
     justify-content: center;
     align-items: center;
     margin: 1vh;
+}
+
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

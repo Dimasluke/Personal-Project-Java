@@ -1,0 +1,57 @@
+.team-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-container-community {
+    margin-top:5vh;
+}
+
+.team-card-container {
+    display: flex;
+}
+
+.community-team-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2vh 2vw;
+    height: 30vh;
+}
+
+.team-show-image {
+    height:120px;
+    width: 120px;
+}
+
+.community-radar {
+    height:20vh;
+    width: 20vw;
+}
+
+.radar-container-community {
+    position: relative;
+    height:10vh;
+    width: 10vw;
+}
+
+.community-team {
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}
+
+.team-button { 
+    width: 4vw;
+    margin-right: 2vw;
+    position: absolute;
+    right: 0;
+    top: 5vh;
+}
+
+.card-img-community {
+    max-width: 119.7px;
+    max-height: 119.7px;
+}

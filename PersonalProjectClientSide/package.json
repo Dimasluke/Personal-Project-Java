@@ -15,6 +15,7 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "jwt-decode": "^2.2.0",
     "massive": "^5.7.5",
     "react": "^16.8.1",
     "react-chartjs": "^1.2.0",

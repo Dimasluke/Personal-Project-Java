@@ -1,0 +1,28 @@
+.team-show-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.community-team-show {
+    margin-top: 1vh;
+    display: flex;
+}
+
+.team-show-button-group {
+    margin: 2vh;
+}
+
+.btn-team { 
+    margin: 2vh;
+    width: 5vw;
+}
+
+.card-team-show {
+    margin: 0 1vw;
+}
+
+.team-show-comment-container {
+    margin-top: 1vh;
+}

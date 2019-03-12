@@ -37,6 +37,14 @@ class Champion extends Component {
         })
     }
 
+    selectChampion = (x) => {
+        axios.get(`/api/champions/${x.id}`).then(response => {
+            console.log("Champion axios call-->", response.data)
+            this.props.championStats(response.data)
+        })
+    }
+
+
     render () {
         const { selectChampion, championStats } = this.props
         const { champions } = this.state
@@ -49,7 +57,10 @@ class Champion extends Component {
                     <img className='card-img-top' src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${e.id}.png`} alt='...'/>
                     <p className='card-title'>{e.name}</p>
                     <p className='card-text'>{e.title}</p>
-                    <Link className='btn btn-primary ' to={`/champions/${e.id}`}>More Info</Link>
+                    <Link 
+                        className='btn btn-primary ' 
+                        to={`/champions/${e.id}`}
+                        onClick={event => this.selectChampion(e.id)}>More Info</Link>
                 </div>
             )
         })

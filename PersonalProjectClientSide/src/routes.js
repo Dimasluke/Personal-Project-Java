@@ -12,14 +12,13 @@ import TeamShow from './components/Community/TeamShow';
 
 export default (
     <Switch>
-        <Route exact path='/community/:id' component={TeamShow} />
+        <Route exact path='/community/:id/' component={TeamShow} />
         <Route exact path='/community' component={Community} />
         <Route exact path='/userSession/register' component={UserRegister} />
         <Route exact path='/userSession' component={UserSession} />
         <Route exact path='/teamBuilder' component={TeamBuilder} />
         <Route exact path='/champions/:id' component={ChampionShow} />
         <Route exact path='/champions' component={Champion} />
-        <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path='/' component={Landing} />
+        <Route exact path='/' component={Dashboard} />
     </Switch>
 )

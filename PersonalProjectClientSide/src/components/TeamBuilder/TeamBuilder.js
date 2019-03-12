@@ -3,8 +3,9 @@ import Navbar from '../Dashboard/Navbar/Navbar';
 import axios from 'axios';
 import './TeamBuilder.css';
 import { Radar } from 'react-chartjs-2';
-import { championStats, addChampion, removeChampion, resetTeam } from '../../redux/reducer';
+import { championStats, addChampion, removeChampion, resetTeam, teamEdit, resetTeamStats, updateTeamPlus, updateTeamMinus, updateTeamName } from '../../redux/reducer';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 
 
@@ -37,9 +38,9 @@ class TeamBuilder extends Component {
         })
     }
 
-    saveTeam = () => {
+    updateTeam = () => {
         const teamInfo = {
-            "teamName": this.state.teamName,
+            "teamName": this.props.teamName,
             "champion1": this.props.team[0].id + "",
             "champion2": this.props.team[1].id + "",
             "champion3": this.props.team[2].id + "",
@@ -47,14 +48,27 @@ class TeamBuilder extends Component {
             "champion5": this.props.team[4].id + "",
         }
         console.log(teamInfo)
-        axios.post('/teams', teamInfo).then(response => {
+        axios.put(`/teams/${this.props.teamInfo.id}`, teamInfo, {
+            headers: { Authorization: this.props.token }
+        }).then(response => {
             console.log(response.data)
         })
     }
 
-    updateTeamName = (teamName) => {
-        this.setState({
-            teamName: teamName
+    saveTeam = () => {
+        const teamInfo = {
+            "teamName": this.props.teamName,
+            "champion1": this.props.team[0].id + "",
+            "champion2": this.props.team[1].id + "",
+            "champion3": this.props.team[2].id + "",
+            "champion4": this.props.team[3].id + "",
+            "champion5": this.props.team[4].id + "",
+        }
+        console.log(teamInfo)
+        axios.post('/teams', teamInfo, {
+            headers: { Authorization: this.props.token }
+        }).then(response => {
+            console.log(response.data)
         })
     }
 
@@ -65,39 +79,40 @@ class TeamBuilder extends Component {
         })
     }
 
-    resetTeam = () => {
-        this.setState({
-            teamDamage: 0,
-            teamToughness: 0,
-            teamCrowdControl: 0,
-            teamUtility: 0,
-            teamMobility: 0,
-        })
-    }
-        
-    updateTeamMinus = (champion) => {
-        let { teamDamage, teamToughness, teamCrowdControl, teamMobility, teamUtility } = this.state
-        this.setState({
-            teamDamage: teamDamage -= champion.damage,
-            teamToughness: teamToughness -= champion.toughness,
-            teamCrowdControl: teamCrowdControl -= champion.crowdControl,
-            teamMobility: teamMobility -= champion.mobility,
-            teamUtility: teamUtility -= champion.utility
-        })
-    }
-
-    updateTeamPlus = (champion) => {
-        let { teamDamage, teamToughness, teamCrowdControl, teamMobility, teamUtility } = this.state
-        this.setState({
-            teamDamage: teamDamage += champion.damage,
-            teamToughness: teamToughness += champion.toughness,
-            teamCrowdControl: teamCrowdControl += champion.crowdControl,
-            teamMobility: teamMobility += champion.mobility,
-            teamUtility: teamUtility += champion.utility
-        })
+    editCheck = ( ) => {
+        console.log(this.props.teamEditCheck)
+        if (!this.props.teamEditCheck){
+            return (
+                <Link 
+                    to='/community'
+                    className='shadow rounded btn btn-success'
+                    onClick={e => {
+                        this.props.updateTeamName('')
+                        this.saveTeam()
+                        this.props.resetTeam()
+                        this.props.resetTeamStats()}}
+                    >Save Team
+                </Link>
+            )
+        } else {
+            return (
+                <Link 
+                    onClick={e => {
+                        this.props.teamEdit(false)
+                        this.props.updateTeamName('')
+                        this.props.resetTeamStats()
+                        this.props.resetTeam()
+                        this.updateTeam()}}
+                    className='btn btn-warning'
+                    to={`/community/${this.props.teamInfo.id}`}>
+                    Save Changes
+                </Link>
+            )
+        }
     }
 
     render(){
+        console.log("TeambuilderProps", this.props)
         const { champions } = this.state
         const result = champions.filter(champion => {
             return champion.name.toLowerCase().includes(this.state.championSearch)
@@ -113,7 +128,7 @@ class TeamBuilder extends Component {
                         title={champion.name}
                         onClick={event => {
                             this.foochampion(champion.name)
-                            this.updateTeamPlus(champion)
+                            this.props.updateTeamPlus(champion)
                             }}>                 
                             <img 
                                 className='card-img-top' 
@@ -153,7 +168,7 @@ class TeamBuilder extends Component {
                 }
             }
             return (
-                <div className='team-card border border-warning rounded' key={index}>
+                <div className='team-card border border-warning rounded shadow-sm bg-white rounded' key={index}>
                     <div className='card-radar'>
                         <Radar
                             height={100}
@@ -164,7 +179,7 @@ class TeamBuilder extends Component {
                     </div>
                     <button 
                         onClick={e => {
-                            this.updateTeamMinus(champion)
+                            this.props.updateTeamMinus(champion)
                             this.props.removeChampion(index)
                         }} 
                         className='btn btn-danger team-card-button'>Delete</button>
@@ -175,18 +190,18 @@ class TeamBuilder extends Component {
             labels: ['Attack', 'Toughness', 'Crowd Control', 'Mobility', 'Utility'],
             datasets: [
                 {
-                    label: "Stats",
+                    label: `${this.props.teamName}`,
                     backgroundColor: "rgba(17, 182, 247, 0.35)",
                     strokeColor: "rgba(220,220,220,1)",
                     pointColor: "rgba(220,220,220,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [this.state.teamDamage, 
-                            this.state.teamToughness, 
-                            this.state.teamCrowdControl, 
-                            this.state.teamMobility, 
-                            this.state.teamUtility]
+                    data: [this.props.teamDamage, 
+                            this.props.teamToughness, 
+                            this.props.teamCrowdControl, 
+                            this.props.teamMobility, 
+                            this.props.teamUtility]
                 }
             ]
         };
@@ -219,30 +234,25 @@ class TeamBuilder extends Component {
                             {mappedChampions}
                         </div>
                     </div>
-                    <div className='team-container'>
-                        <h1>{this.state.teamName}</h1>
+                    <div className='team-container-1'>
                         <input 
+                        className='input-styling'
                             type='text' 
                             placeholder='Enter team name...' 
-                            value={this.state.teamName} 
-                            onChange={e => this.updateTeamName(e.target.value)}/>
+                            value={this.props.teamName} 
+                            onChange={e => this.props.updateTeamName(e.target.value)}/>
                         <div className='selected-team'>              
                                 {mappedTeam}
                         </div>
-                        <button 
-                            onClick={e => {
-                                this.saveTeam()
-                                this.props.resetTeam()
-                                this.resetTeam()}}
-                            >Save Team
-                        </button>
+                        {this.editCheck()}  
                     </div>
                 </div>  
-                <div className='team-radar'>     
+                <div className='team-radar-1'>     
                     <Radar
+                        className='team-radar-1'
                         data={data}
-                        width={100}
-                        height={28}
+                        width={50}
+                        height={50}
                         options={options}
                     />
                 </div>  
@@ -255,8 +265,26 @@ const mapStateToProps = state => {
     return {
         champion: state.championInfo,
         championInfo: state.championStats,
-        team: state.team
+        team: state.team,
+        token: state.userToken,
+        teamInfo: state.teamInfo,
+        teamEditCheck: state.teamEdit,
+        teamDamage: state.teamDamage,
+        teamToughness: state.teamToughness,
+        teamCrowdControl: state.teamCrowdControl,
+        teamUtility: state.teamUtility,
+        teamMobility: state.teamMobility,
+        teamName: state.teamName
     }
 }
 
-export default connect (mapStateToProps, { championStats, addChampion, removeChampion, resetTeam })(TeamBuilder) 
+export default connect (mapStateToProps, { 
+                                            championStats, 
+                                            addChampion, 
+                                            removeChampion, 
+                                            resetTeam, 
+                                            teamEdit, 
+                                            updateTeamPlus,
+                                            resetTeamStats,
+                                            updateTeamMinus,
+                                            updateTeamName })(TeamBuilder) 
